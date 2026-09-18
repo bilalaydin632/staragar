@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>StarAgar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loginScreen">
+    <div class="starfield" id="starfield"></div>
+    <div class="login-panel">
+      <div class="brand">
+        <div class="star-logo">
+          <svg viewBox="0 0 100 100" class="star-svg">
+            <polygon points="50,5 61,38 95,38 67,58 78,90 50,70 22,90 33,58 5,38 39,38" fill="url(#starGrad)" stroke="rgba(255,215,0,0.8)" stroke-width="2"/>
+            <defs>
+              <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFD700"/>
+                <stop offset="100%" stop-color="#FFA500"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="logo">STARAGAR</h1>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Oyuncu Adı</label>
+        <input type="text" id="nameInput" placeholder="İsminizi girin..." maxlength="20" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Oda Seç</label>
+        <div id="roomGrid"></div>
+      </div>
+      <button id="playBtn">
+        <span class="btn-text">Oyuna Başla</span>
+        <span class="btn-shine"></span>
+      </button>
+      <div class="controls-hint">
+        <div class="ctrl-row"><span class="ctrl-key">Fare</span> Hareket</div>
+        <div class="ctrl-row"><span class="ctrl-key">Scroll</span> Zoom</div>
+        <div class="ctrl-row"><span class="ctrl-key">W</span> Yem At</div>
+        <div class="ctrl-row"><span class="ctrl-key">E</span> 7 Yem At</div>
+        <div class="ctrl-row"><span class="ctrl-key">Space</span> Bölün</div>
+        <div class="ctrl-row"><span class="ctrl-key">Ctrl</span> 16'ya Böl</div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="hud" style="display:none;">
+    <div id="scoreBoard">
+      <div class="hud-box"><span class="hud-label">KÜTLE</span><span id="massDisplay">0</span></div>
+      <div class="hud-box"><span class="hud-label">SÜRE</span><span id="timerDisplay">60:00</span></div>
+      <div class="hud-box" id="modeBadge"><span class="hud-label">MOD</span><span id="modeDisplay">FFA1</span></div>
+    </div>
+    <div id="leaderboard">
+      <div class="lb-title">LİDERLİK</div>
+      <ol id="lbList"></ol>
+    </div>
+    <div id="teamPanel" style="display:none;">
+      <div class="lb-title">TAKIM DENGESİ</div>
+      <div id="teamBars"></div>
+    </div>
+    <div id="territoryPanel" style="display:none;">
+      <div class="lb-title">BÖLGELER</div>
+      <div id="territoryList"></div>
+    </div>
+  </div>
+
+  <div id="winnerBanner" style="display:none;"></div>
+
+  <div id="respawnScreen" style="display:none;">
+    <div class="login-panel">
+      <h2>Elendin!</h2>
+      <button id="respawnBtn">Yeniden Başla</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
